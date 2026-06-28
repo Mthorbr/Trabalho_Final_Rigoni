@@ -1,0 +1,122 @@
+[
+  {
+    "jogoId": "J001",
+    "titulo": "Flamengo x Fluminense",
+    "campeonato": "Campeonato Carioca",
+    "data": "2025-03-15",
+    "horario": "16:00",
+    "placar": "3 x 1",
+    "status": "Disponível",
+    "avaliacao": "4.8"
+  },
+  {
+    "jogoId": "J002",
+    "titulo": "Palmeiras x Corinthians",
+    "campeonato": "Campeonato Paulista",
+    "data": "2025-03-22",
+    "horario": "18:30",
+    "placar": "2 x 2",
+    "status": "Disponível",
+    "avaliacao": "4.9"
+  },
+  {
+    "jogoId": "J003",
+    "titulo": "Grêmio x Internacional",
+    "campeonato": "Gauchão",
+    "data": "2025-04-05",
+    "horario": "16:00",
+    "placar": "1 x 0",
+    "status": "Disponível",
+    "avaliacao": "4.7"
+  },
+  {
+    "jogoId": "J004",
+    "titulo": "Atlético-MG x Cruzeiro",
+    "campeonato": "Campeonato Mineiro",
+    "data": "2025-04-12",
+    "horario": "18:30",
+    "placar": "0 x 1",
+    "status": "Disponível",
+    "avaliacao": "4.6"
+  },
+  {
+    "jogoId": "J005",
+    "titulo": "São Paulo x Santos",
+    "campeonato": "Campeonato Paulista",
+    "data": "2025-04-19",
+    "horario": "16:00",
+    "placar": "2 x 0",
+    "status": "Disponível",
+    "avaliacao": "4.5"
+  },
+  {
+    "jogoId": "J006",
+    "titulo": "Botafogo x Vasco",
+    "campeonato": "Campeonato Carioca",
+    "data": "2025-04-26",
+    "horario": "18:30",
+    "placar": "1 x 1",
+    "status": "Disponível",
+    "avaliacao": "4.4"
+  },
+  {
+    "jogoId": "J007",
+    "titulo": "Bahia x Vitória",
+    "campeonato": "Campeonato Baiano",
+    "data": "2025-05-03",
+    "horario": "16:00",
+    "placar": "3 x 0",
+    "status": "Disponível",
+    "avaliacao": "4.3"
+  },
+  {
+    "jogoId": "J008",
+    "titulo": "Sport x Náutico",
+    "campeonato": "Campeonato Pernambucano",
+    "data": "2025-05-10",
+    "horario": "16:00",
+    "placar": "2 x 1",
+    "status": "Disponível",
+    "avaliacao": "4.2"
+  },
+  {
+    "jogoId": "J009",
+    "titulo": "Fortaleza x Ceará",
+    "campeonato": "Campeonato Cearense",
+    "data": "2025-05-17",
+    "horario": "18:30",
+    "placar": "1 x 2",
+    "status": "Disponível",
+    "avaliacao": "4.6"
+  },
+  {
+    "jogoId": "J010",
+    "titulo": "Flamengo x PSG",
+    "campeonato": "Mundial de Clubes",
+    "data": "2025-06-20",
+    "horario": "20:00",
+    "placar": "—",
+    "status": "Em Breve",
+    "avaliacao": "0.0"
+  },
+  {
+    "jogoId": "J011",
+    "titulo": "Brasil x Argentina",
+    "campeonato": "Eliminatórias Copa 2026",
+    "data": "2025-06-05",
+    "horario": "21:45",
+    "placar": "—",
+    "status": "Em Breve",
+    "avaliacao": "0.0"
+  },
+  {
+    "jogoId": "J012",
+    "titulo": "Athletico-PR x Coritiba",
+    "campeonato": "Campeonato Paranaense",
+    "data": "2025-05-24",
+    "horario": "16:00",
+    "placar": "2 x 0",
+    "status": "Disponível",
+    "avaliacao": "4.5"
+  }
+]
