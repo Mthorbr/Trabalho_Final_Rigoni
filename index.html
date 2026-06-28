@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KickStream - Catálogo de Transmissões</title>
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e24;
+            --bg-input: #2a2a35;
+            --accent-yellow: #ffeb3b;
+            --text-light: #ffffff;
+            --text-gray: #a0a0a0;
+            --border-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        header h1 span {
+            color: var(--accent-yellow);
+        }
+
+        .header-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .header-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .header-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .filters-section {
+            padding: 20px 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filters-section input, .filters-section select {
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .filters-section input:focus, .filters-section select:focus {
+            border-color: var(--accent-yellow);
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 0 30px 30px 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr 350px;
+            }
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background-color: var(--bg-card);
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .game-card:hover {
+            border-color: var(--border-color);
+        }
+
+        .game-title {
+            color: var(--accent-yellow);
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 0 15px 0;
+        }
+
+        .game-info {
+            font-size: 13px;
+            color: var(--text-light);
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .status-badge {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .status-disponivel {
+            color: #4caf50;
+            border: 1px solid #4caf50;
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .status-breve {
+            color: #ff9800;
+            border: 1px solid #ff9800;
+            background-color: rgba(255, 152, 0, 0.1);
+        }
+
+        .btn-assistir {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-assistir:hover {
+            opacity: 0.9;
+        }
+
+        .sidebar {
+            background-color: var(--bg-card);
+            border-radius: 6px;
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .player-box {
+            background-color: #000000;
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #f44336;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .live-badge::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .player-title {
+            color: var(--accent-yellow);
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0 5px 0;
+        }
+
+        .player-desc {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><span>KICKSTREAM</span> ⚽ 🎮</h1>
+        <div class="header-links">
+            <a href="index.html">Catálogo</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="contato.html">Contato</a>
+            <span>Console Live Mode</span>
+        </div>
+    </header>
+
+    <div class="filters-section">
+        <input type="text" id="searchInput" placeholder="Buscar jogo ou time..." oninput="filtrarJogos()">
+        <select id="champFilter" onchange="filtrarJogos()">
+            <option value="">Todos os Campeonatos</option>
+        </select>
+        <select id="statusFilter" onchange="filtrarJogos()">
+            <option value="">Todos os Status</option>
+            <option value="Disponível">Disponível</option>
+            <option value="Em Breve">Em Breve</option>
+        </select>
+    </div>
+
+    <div class="main-container">
+        <div class="catalog-section">
+            <div class="section-title">Catálogo de Transmissões</div>
+            <div id="loading" style="color: var(--text-gray);">Buscando catálogo no cluster...</div>
+            <div class="games-grid" id="gamesContainer"></div>
+        </div>
+
+        <div class="sidebar">
+            <div class="section-title">Aba de Transmissão</div>
+            <div id="playerArea">
+                <div class="player-box">
+                    <div style="color: var(--text-gray); font-size: 14px;">Selecione uma partida ao lado para iniciar a transmissão</div>
+                </div>
+                <div class="player-title">Nenhum canal ativo</div>
+                <div class="player-desc">Aguardando sinal...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let jogos = [];
+
+        function initApp() {
+            // Consome o arquivo JSON gerado pela AWS CLI via User Data (conforme exigência de integração)
+            fetch('dados_jogos.json')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('loading').style.display = 'none';
+                    jogos = data;
+                    popularFiltros();
+                    renderizarCatalogo(jogos);
+                })
+                .catch(err => {
+                    document.getElementById('loading').innerText = "Erro ao carregar os dados. Verifique a integração com o DynamoDB.";
+                });
+        }
+
+        function popularFiltros() {
+            const select = document.getElementById('champFilter');
+            const campeonatos = [...new Set(jogos.map(j => j.campeonato))];
+            campeonatos.forEach(camp => {
+                const opt = document.createElement('option');
+                opt.value = camp;
+                opt.innerText = camp;
+                select.appendChild(opt);
+            });
+        }
+
+        function renderizarCatalogo(lista) {
+            const container = document.getElementById('gamesContainer');
+            container.innerHTML = '';
+
+            lista.forEach(jogo => {
+                const isDisponivel = jogo.status.toLowerCase() === 'disponível' || jogo.status.toLowerCase() === 'disponivel';
+                const statusClass = isDisponivel ? 'status-disponivel' : 'status-breve';
+                
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.innerHTML = `
+                    <div class="game-title">${jogo.titulo}</div>
+                    <div class="game-info">🏆 ${jogo.campeonato}</div>
+                    <div class="game-info">📅 ${jogo.data} às ${jogo.horario}</div>
+                    <div class="game-info">📊 Placar: ${jogo.placar}</div>
+                    <div class="card-footer">
+                        <span class="status-badge ${statusClass}">${jogo.status}</span>
+                        <button class="btn-assistir" onclick="mockarPlayer('${jogo.jogoId}')">Assistir</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filtrarJogos() {
+            const busca = document.getElementById('searchInput').value.toLowerCase();
+            const camp = document.getElementById('champFilter').value;
+            const stat = document.getElementById('statusFilter').value;
+
+            const filtrados = jogos.filter(j => {
+                const matchBusca = j.titulo.toLowerCase().includes(busca);
+                const matchCamp = camp === "" || j.campeonato === camp;
+                const matchStat = stat === "" || j.status === stat;
+                return matchBusca && matchCamp && matchStat;
+            });
+
+            renderizarCatalogo(filtrados);
+        }
+
+        function mockarPlayer(id) {
+            const jogo = jogos.find(j => j.jogoId === id);
+            if(!jogo) return;
+
+            const area = document.getElementById('playerArea');
+            area.innerHTML = `
+                <div class="player-box">
+                    <div class="live-badge">AO VIVO</div>
+                    <div style="font-size: 40px; margin-bottom: 10px;">🏟️</div>
+                    <div style="font-weight: bold; font-size: 16px;">Transmissão Estabilizada!</div>
+                    <div style="color: var(--accent-yellow); font-size: 13px; margin-top: 5px;">Nota da Comunidade: ⭐ ${jogo.avaliacao}</div>
+                </div>
+                <div class="player-title">${jogo.titulo}</div>
+                <div class="player-desc">Campeonato: ${jogo.campeonato} | Transmissão via cluster de Alta Disponibilidade.</div>
+            `;
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
